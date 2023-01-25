@@ -34,6 +34,20 @@ server.get("/div", function (req, res) {
     res.send((a/b).toString()); // send response body
 });
 
+server.get("/mod", function (req, res) {
+  console.log(req.query);
+    var a = parseFloat(req.query.a);
+    var b = parseFloat(req.query.b);
+    res.send((a%b).toString()); // send response body
+});
+
+
+server.get("/pow", function (req, res) {
+  console.log(req.query);
+    var a = parseFloat(req.query.a);
+    var b = parseFloat(req.query.b);
+    res.send((a**b).toString()); // send response body
+});
 
 server.use(methodOverride());
 server.use(bodyParser());
