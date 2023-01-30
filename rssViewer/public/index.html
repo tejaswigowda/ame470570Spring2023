@@ -13,7 +13,7 @@
         position:absolute;
         width: 30vw;
         background: lightgray;
-        height: 100vh;
+        max-height: 100vh;
         overflow-y: auto;
       }
       #itemList button
@@ -47,7 +47,7 @@
         width: 70%;
         position: absolute;
         right: 0;
-        height: 100vh;
+        max-height: 100vh;
         overflow: auto;
         text-align:center;
       }
@@ -97,6 +97,7 @@
               "<a target='_blank' href='"+ item.artistUrl +"'><h2>" + item.artistName + "</h2></a>" +
               "<p><i>"+ moment(item.releaseDate).format('MMMM Do YYYY'); + "</i></p>"
           document.getElementById("itemDetails").innerHTML  = markup;
+          document.getElementsByTagName("body")[0].className = "details";
       }
     </script>
   </head>
