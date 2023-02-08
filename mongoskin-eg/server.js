@@ -18,11 +18,11 @@ var port = 1234;
 server.get("/add", function (req, res) {
   console.log(req.query);
   db.collection("data").insert(req.query, function(err, result) {
-  });
-
     var a = parseFloat(req.query.a);
     var b = parseFloat(req.query.b);
     res.send((a+b).toString()); // send response body
+  });
+
 
 });
 
