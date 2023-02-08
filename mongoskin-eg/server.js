@@ -1,5 +1,5 @@
 var mongo = require('mongoskin');
-var db = mongo.db("mongodb://44.203.237.16:27017/test");
+var db = mongo.db("mongodb://44.203.237.16:27017/testdb");
 
 var express = require("express");
 var server = express();
