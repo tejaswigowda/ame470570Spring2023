@@ -1,3 +1,5 @@
+var mongo = require('mongoskin');
+var db = mongo.db("mongodb://44.203.237.16:27017/test", {native_parser:true});
 var express = require("express");
 var server = express();
 var bodyParser = require('body-parser');
@@ -5,6 +7,8 @@ var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
 var hostname = process.env.HOSTNAME || 'localhost';
 var port = 1234;
+
+
 
 server.get("/add", function (req, res) {
   console.log(req.query);
