@@ -17,6 +17,8 @@ var port = 1234;
 
 server.get("/add", function (req, res) {
   console.log(req.query);
+  req.query.op = "add";
+  req.query.time = new Date().getTime();
   db.collection("data").insert(req.query, function(err, result) {
     var a = parseFloat(req.query.a);
     var b = parseFloat(req.query.b);
