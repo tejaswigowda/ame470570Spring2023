@@ -1,5 +1,6 @@
 var mongo = require('mongoskin');
-var db = mongo.db("mongodb://44.203.237.16:27017/test", {native_parser:true});
+var db = mongo.db("mongodb://44.203.237.16:27017/test");
+
 var express = require("express");
 var server = express();
 var bodyParser = require('body-parser');
