@@ -1,6 +1,10 @@
 var mongo = require('mongoskin');
 var db = mongo.db("mongodb://44.203.237.16:27017/testdb");
 
+db.collection('user').find().toArray(function(err, result) {
+  console.log(result);
+});
+
 var express = require("express");
 var server = express();
 var bodyParser = require('body-parser');
