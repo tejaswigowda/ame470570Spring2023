@@ -11,6 +11,12 @@
         var url = "./" + op + "?a=" + a + "&b=" + b;
         loadURL(url, function(resData){
            document.getElementById("soln").innerHTML  = resData;
+           polulateHistory();
+        });
+      }
+      function polulateHistory(){
+        loadURL("./history", function(resData){
+          document.getElementById("history").innerHTML = resData;
         });
       }
     </script>
@@ -30,5 +36,8 @@
 
     <button onclick='doMath()'> Calculate </button>
     <h2 id='soln'></h2>
+
+    <div id="history"></div>
+
   </body>
 </html>
