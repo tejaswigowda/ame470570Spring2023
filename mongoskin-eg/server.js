@@ -83,6 +83,20 @@ server.get("/pow", function (req, res) {
   });
 });
 
+
+server.get("/history", function (req, res) {
+  db.collection("data").find().sort({time:-1}).toArray(function(err, result) {
+    res.send(result);
+  });
+});
+
+server.get("/delete", function (req, res) {
+  var time = parseInt(req.query.time);
+  db.collection("data").remove({time:time}, function(err, result) {
+    res.send("Deleted");
+  });
+});
+
 server.use(methodOverride());
 server.use(bodyParser());
 server.use(errorHandler());

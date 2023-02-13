@@ -11,17 +11,22 @@
         var url = "./" + op + "?a=" + a + "&b=" + b;
         loadURL(url, function(resData){
            document.getElementById("soln").innerHTML  = resData;
-           polulateHistory();
+           populateHistory();
         });
       }
-      function polulateHistory(){
+      function populateHistory(){
         loadURL("./history", function(resData){
-          document.getElementById("history").innerHTML = resData;
+          var items = JSON.parse(resData);
+          var markup = "";
+          for(var i=0; i<items.length; i++){
+            markup += "<li>" + JSON.stringify(items[i]) + "<a href='deleteItem(\"" + items[i]._id + "\")'>Delete</a>" + "</li>";
+          }
+          document.getElementById("history").innerHTML = markup;
         });
       }
     </script>
   </head>
-  <body>
+  <body onload="populateHistory()">
     <h1> Simple AJAX Math Operators </h1>
     <input type='number' id='valA'>
     <select id='operator'>
@@ -37,7 +42,7 @@
     <button onclick='doMath()'> Calculate </button>
     <h2 id='soln'></h2>
 
-    <div id="history"></div>
+    <ol id="history"></ol>
 
   </body>
 </html>
