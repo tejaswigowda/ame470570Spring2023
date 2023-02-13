@@ -1,5 +1,5 @@
 var mongo = require('mongoskin');
-var db = mongo.db("mongodb://44.203.237.16:27017/testdb");
+var db = mongo.db("mongodb://18.235.234.196:27017/testdb");
 
 db.collection('user').find().toArray(function(err, result) {
   console.log(result);
@@ -24,44 +24,63 @@ server.get("/add", function (req, res) {
     var b = parseFloat(req.query.b);
     res.send((a+b).toString()); // send response body
   });
-
-
 });
 
 server.get("/sub", function (req, res) {
   console.log(req.query);
+  req.query.op = "sub";
+  req.query.time = new Date().getTime();
+  db.collection("data").insert(req.query, function(err, result) {
     var a = parseFloat(req.query.a);
     var b = parseFloat(req.query.b);
     res.send((a-b).toString()); // send response body
+  });
 });
 
 server.get("/mul", function (req, res) {
   console.log(req.query);
+  req.query.op = "mul";
+  req.query.time = new Date().getTime();
+  db.collection("data").insert(req.query, function(err, result) {
     var a = parseFloat(req.query.a);
     var b = parseFloat(req.query.b);
     res.send((a*b).toString()); // send response body
+
+  });
 });
 
 server.get("/div", function (req, res) {
   console.log(req.query);
+  req.query.op = "div";
+  req.query.time = new Date().getTime();
+  db.collection("data").insert(req.query, function(err, result) {
     var a = parseFloat(req.query.a);
     var b = parseFloat(req.query.b);
     res.send((a/b).toString()); // send response body
+  });
 });
 
 server.get("/mod", function (req, res) {
   console.log(req.query);
+  req.query.op = "mod";
+  req.query.time = new Date().getTime();
+  db.collection("data").insert(req.query, function(err, result) {
     var a = parseFloat(req.query.a);
     var b = parseFloat(req.query.b);
     res.send((a%b).toString()); // send response body
+  });
 });
 
 
 server.get("/pow", function (req, res) {
   console.log(req.query);
+  req.query.op = "pow";
+  req.query.time = new Date().getTime();
+  db.collection("data").insert(req.query, function(err, result) {
     var a = parseFloat(req.query.a);
     var b = parseFloat(req.query.b);
     res.send((a**b).toString()); // send response body
+  });
 });
 
 server.use(methodOverride());
