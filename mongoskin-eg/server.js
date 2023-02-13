@@ -91,8 +91,8 @@ server.get("/history", function (req, res) {
 });
 
 server.get("/delete", function (req, res) {
-  var time = parseInt(req.query.time);
-  db.collection("data").remove({time:time}, function(err, result) {
+  var id = parseInt(req.query.id);
+  db.collection("data").remove({_id:id}, function(err, result) {
     res.send("Deleted");
   });
 });
