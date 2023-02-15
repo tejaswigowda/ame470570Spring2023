@@ -33,9 +33,9 @@
           var url = "./delete?id=" + id;
           loadURL(url, function(resData){
             if(resData == "Deleted"){
-              alert("Item deleted");
+              //alert("Item deleted");
               //populateHistory();
-              $("#history li:nth-of-type("+ (index+1) + ")").remove()
+              $("#history li:nth-of-type(" + (index+1) + ")").remove()
             }
             else{
               alert("Something went wrong");
