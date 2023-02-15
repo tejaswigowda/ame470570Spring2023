@@ -1,9 +1,11 @@
 var mongo = require('mongoskin');
-var db = mongo.db("mongodb://18.235.234.196:27017/testdb");
+var db = mongo.db("mongodb://3.101.191.42:27017/testdb");
 
+/*
 db.collection('user').find().toArray(function(err, result) {
   console.log(result);
 });
+*/
 
 var express = require("express");
 var server = express();
