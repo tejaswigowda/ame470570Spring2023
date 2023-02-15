@@ -93,8 +93,10 @@ server.get("/history", function (req, res) {
 });
 
 server.get("/delete", function (req, res) {
-  var id = parseInt(req.query.id);
-  db.collection("data").remove({_id:id}, function(err, result) {
+  var id = req.query.id;
+  console.log(typeof id, id)
+  db.collection("data").remove({_id: mongo.helper.toObjectID(id)}, function(err, result) {
+    console.log(err);
     res.send("Deleted");
   });
 });
