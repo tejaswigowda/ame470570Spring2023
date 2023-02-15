@@ -19,14 +19,14 @@
           var items = JSON.parse(resData);
           var markup = "";
           for(var i=0; i<items.length; i++){
-            markup += "<li>" + JSON.stringify(items[i]) + "<a href='deleteItem(\"" + items[i]._id + "\")'>Delete</a>" + "</li>";
+            markup += "<li>" + JSON.stringify(items[i]) + "<a href='javascript:deleteItem(\"" + items[i]._id + "\", " + i + ")'>Delete</a>" + "</li>";
           }
           document.getElementById("history").innerHTML = markup;
         });
       }
 
       function deleteItem(id){
-        var x = prompt("Are you sure you want to delete this item? (y/n)");
+        var x = confirm("Are you sure you want to delete this item? (y/n)");
         if(x){
           // complete this function
         }
