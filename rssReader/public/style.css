@@ -1,0 +1,38 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#rssListWrapper{
+    width: 20vw;
+    height: 100vh;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+    background-color: aquamarine;    
+    float: left;
+}
+
+#itemListWrapper{
+    width: 30vw;
+    height: 100vh;
+    overflow: auto;
+    padding: 0;
+    margin: 0;
+    background-color: beige;
+    float: left;
+}
+
+#details{
+    width: 50vw;
+    height: 100vh;
+    float:right;
+}
+
+#rssListWrapper > button{
+    width:100%;
+}
+
+#itemListWrapper > button{
+    margin: 0 10px 0 10px;
+}
