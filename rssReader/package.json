@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "express": "^4.18.2",
+    "mongoskin": "^2.1.0",
     "node-rest-client": "^3.1.1"
   }
 }
