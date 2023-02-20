@@ -7,6 +7,32 @@ var port = 1234;
 var Client = require('node-rest-client').Client;
 var client = new Client();
  
+server.get("/getFeeds", function (req, res) {
+    db.collection('feeds').find().toArray(function (err, result) {
+        if (err) {
+            console.log(err);
+        } else if (result.length) {
+            console.log('Found:', result);
+            res.send(result);
+        } else {
+            console.log('No document(s) found with defined "find" criteria!');
+        }
+    });
+});
+
+server.get("/addFeed", function (req, res) {
+    var data = req.query;
+    data.time = new Date().getTime();
+    data.name = "Untitled";
+    db.collection('feeds').insert(data, function (err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Inserted %d documents into the "feeds" collection. The documents inserted with "_id" are:', result.length, result);
+            res.send(result);
+        }
+    });
+});
 
 server.get("/makeHTTPReq", function (req, res) {
   var url = req.query.url;
