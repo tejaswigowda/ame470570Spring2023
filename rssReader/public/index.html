@@ -12,7 +12,7 @@
     </head>
     <body>
         <div id="rssListWrapper">  
-            <button class="btn waves-effect waves-light blue">Add New
+            <button class="btn waves-effect waves-light blue" onclick="addNew()">Add New
                 <i class="material-icons left">add_circle</i>
               </button>
               <div id="rssList">
@@ -35,4 +35,32 @@
 
         
     </body>
+    <script>
+      function addNew(){
+        var url = prompt("Enter the URL of the RSS feed you want to add");
+        if(url != null){
+          loadURL("/addFeed?url=" + url, function(data){
+            console.log(data);
+          });
+        }
+      }
+
+      function loadAllFeeds(){
+        loadURL("/getFeeds", function(data){
+          console.log(data);
+          var feeds = JSON.parse(data);
+          document.getElementById("rssList").innerHTML = "";
+          for(var i = 0; i < feeds.length; i++){
+            var feed = feeds[i];
+            var feedDiv = document.createElement("div");
+            feedDiv.className = "feed";
+            feedDiv.innerHTML = feed.title;
+            feedDiv.onclick = function(){
+              loadFeed(feed.url);
+            }
+            document.getElementById("rssList").appendChild(feedDiv);
+          }
+        });
+      }
+    </script>
 </html>
