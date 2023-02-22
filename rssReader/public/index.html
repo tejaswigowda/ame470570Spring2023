@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">          
         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    <body onload="loadAllFeeds()">
         <div id="rssListWrapper">  
             <button class="btn waves-effect waves-light blue" onclick="addNew()">Add New
                 <i class="material-icons left">add_circle</i>
@@ -41,26 +41,60 @@
         if(url != null){
           loadURL("/addFeed?url=" + url, function(data){
             console.log(data);
+            loadAllFeeds();
           });
         }
       }
 
+      var feeds;
+      var currentFeed = -1;
       function loadAllFeeds(){
         loadURL("/getFeeds", function(data){
           console.log(data);
-          var feeds = JSON.parse(data);
+          feeds = JSON.parse(data);
           document.getElementById("rssList").innerHTML = "";
           for(var i = 0; i < feeds.length; i++){
             var feed = feeds[i];
-            var feedDiv = document.createElement("div");
+            var feedDiv = document.createElement("button");
             feedDiv.className = "feed";
-            feedDiv.innerHTML = feed.title;
-            feedDiv.onclick = function(){
-              loadFeed(feed.url);
+            feedDiv.innerHTML = "<h1>" + feed.name + "</h1>" + "<p>" + feed.url + "</p>";
+            var y = function(i){
+              var x = i;
+              return function(){
+                loadFeed(x);
+              }
             }
+            feedDiv.onclick =  y(i);
+            
             document.getElementById("rssList").appendChild(feedDiv);
           }
         });
       }
-    </script>
+
+      function loadFeed(index){
+        console.log(feeds[index], index);
+        currentFeed = index;
+        var url = "./makeHTTPReq?url=" + feeds[index].url;
+        loadURL(url, function(resData){
+           jsonObj = JSON.parse(resData);
+           generateMarkup();
+        });
+      }
+
+      function generateMarkup()
+      {
+        var list = jsonObj.feed.results;
+        var markup = "";
+        for (var i = 0; i < list.length; i++){
+          markup += "<button onclick='itemClicked("+ i +")'>" +
+              "<img src='"+ list[i].artworkUrl100 +"'>" +
+              "<h1>" + list[i].name + "</h1>" + 
+              "<h2>" + list[i].artistName + "</h2>" + 
+            "</button>";
+        }
+        console.log(markup);
+        document.getElementById("itemList").innerHTML  = markup;
+      }
+      
+      </script>
 </html>

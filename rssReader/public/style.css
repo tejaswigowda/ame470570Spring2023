@@ -1,19 +1,19 @@
-body{
+body {
     margin: 0;
     padding: 0;
 }
 
-#rssListWrapper{
+#rssListWrapper {
     width: 20vw;
     height: 100vh;
     overflow: auto;
     padding: 0;
     margin: 0;
-    background-color: aquamarine;    
+    background-color: aquamarine;
     float: left;
 }
 
-#itemListWrapper{
+#itemListWrapper {
     width: 30vw;
     height: 100vh;
     overflow: auto;
@@ -23,16 +23,78 @@ body{
     float: left;
 }
 
-#details{
+#details {
     width: 50vw;
     height: 100vh;
-    float:right;
+    float: right;
 }
 
-#rssListWrapper > button{
-    width:100%;
+#rssListWrapper>button {
+    width: 100%;
 }
 
-#itemListWrapper > button{
+#itemListWrapper>button {
     margin: 0 10px 0 10px;
+}
+
+#rssList>button {
+    width: 100%;
+}
+
+#rssList>button h1 {
+    font-size: 20px;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+#itemList button {
+    width: 100%;
+    height: 100px;
+    padding: 0;
+}
+
+#itemList button img {
+    float: left;
+}
+
+#itemList button h1 {
+    text-overflow: ellipsis;
+    word-break: break-word;
+    overflow: hidden;
+    max-height: 30px;
+    font-size: 20px;
+    white-space: nowrap;
+    text-align: left;
+    padding-left: 10px;
+    margin-top: 20px;
+}
+
+#itemList button h2 {
+    text-overflow: ellipsis;
+    word-break: break-word;
+    overflow: hidden;
+    height: 30px;
+    white-space: nowrap;
+    text-align: left;
+    margin:0;
+    padding: 0;
+    padding-left: 10px;
+    margin-top: -20px;
+    font-size: 16px;
+}
+
+#itemDetails {
+    width: 70%;
+    position: absolute;
+    right: 0;
+    max-height: 100vh;
+    overflow: auto;
+    text-align: center;
+}
+
+#itemList button.selected {
+    background: lightblue;
 }
