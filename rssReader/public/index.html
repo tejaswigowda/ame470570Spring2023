@@ -20,7 +20,7 @@
         </div>
 
         <div id="itemListWrapper">
-            <button class="btn waves-effect waves-light blue">Edit
+            <button class="btn waves-effect waves-light blue" onclick="editCurrFeed()">Edit
                 <i class="material-icons left">edit</i>
               </button>
               <button class="btn waves-effect waves-light red" style="float:right">Delete
@@ -36,6 +36,16 @@
         
     </body>
     <script>
+      function editCurrFeed()
+      {
+        var name = prompt("Rename RSS feed:", feeds[currentFeed].name);
+        if(name != null){
+          loadURL("/editFeed?name=" + name + "&id=" + feeds[currentFeed]._id, function(data){
+            console.log(data);
+            loadAllFeeds();
+          });
+        }
+      }
       function addNew(){
         var url = prompt("Enter the URL of the RSS feed you want to add");
         if(url != null){

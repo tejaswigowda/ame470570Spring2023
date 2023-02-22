@@ -7,6 +7,21 @@ var port = 1234;
 var Client = require('node-rest-client').Client;
 var client = new Client();
  
+
+server.get("/editFeed", function (req, res) {
+    var data = req.query;
+    var id = data.id;
+    console.log(data, id);
+    db.collection('feeds').update({ _id: MS.helper.toObjectID(id) }, { $set: { name: data.name} }, function (err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('updated:', result.length, result);
+            res.send(result);
+        }
+    });
+});
+
 server.get("/getFeeds", function (req, res) {
     db.collection('feeds').find().toArray(function (err, result) {
         if (err) {
