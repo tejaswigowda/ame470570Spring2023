@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var errorHandler = require('errorhandler');
 var methodOverride = require('method-override');
 var hostname = process.env.HOSTNAME || 'localhost';
-var port = 1234;
+var port = 2345;
 var Client = require('node-rest-client').Client;
 var client = new Client();
  
