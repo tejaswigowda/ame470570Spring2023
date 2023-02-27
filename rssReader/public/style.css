@@ -95,6 +95,6 @@ body {
     text-align: center;
 }
 
-#itemList button.selected {
-    background: lightblue;
+button.selected{
+    background: #2ab7a9;
 }

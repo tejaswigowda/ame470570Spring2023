@@ -82,6 +82,9 @@
       }
 
       function loadFeed(index){
+        $("#rssList button").removeClass("selected");
+        $("#rssList button:eq(" + index + ")").addClass("selected");
+
         console.log(feeds[index], index);
         currentFeed = index;
         var url = "./makeHTTPReq?url=" + feeds[index].url;
