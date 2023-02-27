@@ -58,6 +58,8 @@
 
       var feeds;
       var currentFeed = -1;
+      var currItem = -1;
+      
       function loadAllFeeds(){
         loadURL("/getFeeds", function(data){
           console.log(data);
