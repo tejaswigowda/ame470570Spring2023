@@ -14,7 +14,6 @@ Make sure you implement the following features:
 5. Implement the `details` column (third column the user sees).
 
 
-
 ## Submisssion
 
 Code on github
