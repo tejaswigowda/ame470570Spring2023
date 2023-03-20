@@ -1,6 +1,6 @@
 # Assignment 4
 
-Due March 15th before class
+Due March 15th before midnight
 
 ## Task
 
