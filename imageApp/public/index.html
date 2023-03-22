@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="asyncReq.js"></script>
+    <script src="script.js"></script>
+
+</head>
+
+
+<body>
+  <div id="column0">  
+    <button id="profilePic" class='menuBtn' onclick="menuBtnClicked(0)">
+    </button>  
+      <a href="javascript:menuBtnClicked(1)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">apps</i>Dashboard</a>
+      <a href="javascript:menuBtnClicked(2)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">group</i>Friends</a>
+      <a href="javascript:menuBtnClicked(3)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">inbox</i>Messages</a>
+      <a href="javascript:menuBtnClicked(4)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">settings</i>Account</a>
+
+    </div>
+
+
+  </div>
+
+  <div id="column1">
+      <div class="canvas">
+        <h1> My Images</h1>
+      </div>
+      <div class="canvas">
+        <h1> Dashboard</h1>
+      </div>
+      <div class="canvas">
+        <h1> My Friends</h1>
+      </div>
+      <div class="canvas">
+        <h1> Messages</h1>
+      </div>
+      <div class="canvas">
+        <h1> Settings</h1>
+        </div>
+    </div>
+  
+  <div id="column2">
+
+  </div>
+  <a id='backBtn' href='javascript:goBack()' class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">arrow_back</i></a>
+</body>
+</html>
