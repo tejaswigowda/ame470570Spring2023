@@ -1,4 +1,13 @@
-
+.canvas{
+    overflow-y:auto;
+    overflow-x:hidden;
+    height: 100%;
+}
+#addNew{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
 
 #backBtn{
     display: none;

@@ -31,6 +31,13 @@
   <div id="column1">
       <div class="canvas">
         <h1> My Images</h1>
+        <a id='addNew' href='javascript:addNew()' class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i>
+          <input type="file" id="file" name="file" style="opacity:0;    width: 60px;
+          height: 60px;
+          left: 0;
+          position: absolute;
+          bottom: 0;" onchange="uploadFile()">
+        </a>
       </div>
       <div class="canvas">
         <h1> Dashboard</h1>
