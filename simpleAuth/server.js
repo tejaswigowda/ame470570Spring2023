@@ -2,7 +2,7 @@ var url = require("url"),
 	querystring = require("querystring");
 var passport = require('passport');
 var fs = require('fs');
-	var dbURL = 'mongodb://127.0.0.1:27017/test';
+	var dbURL = 'mongodb://3.101.54.125:27017/test';
 var path = require('path'),
   express = require('express'),
   db = require('mongoskin').db(dbURL);
@@ -38,11 +38,11 @@ require('./passport/config/passport')(passport); // pass passport for configurat
 require('./passport/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 
-app.get("/addProject", isLoggedIn, function(req,res){
+app.get("/addImage", isLoggedIn, function(req,res){
 
 })
 
-app.get("/getProjects", function(req,res){
+app.get("/getImages", function(req,res){
 
 })
 
