@@ -1,6 +1,10 @@
+var editModal;
+
 function start()
 {
     document.getElementById("accountInfo").innerHTML = "Welcome, " + userObj.local.email;
+    var elems = document.querySelectorAll('.modal');
+    editModal = M.Modal.init(elems, {});
 }
 
 function menuBtnClicked(index){
@@ -23,4 +27,17 @@ function goBack(){
         $("#column0 .menuBtn").removeClass("selected");
     }
 
+}
+
+function uploadFile()
+{
+    var file = document.getElementById("file").files[0];
+    var reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = function(){
+        var img = new Image();
+        document.getElementById("image").src = reader.result;
+        editModal[0].open()
+        $("#image").cropper({aspectRatio: 1/1})
+    }
 }
