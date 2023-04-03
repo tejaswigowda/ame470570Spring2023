@@ -2,14 +2,14 @@ var url = require("url"),
 	querystring = require("querystring");
 var passport = require('passport');
 var fs = require('fs');
-	var dbURL = 'mongodb://3.101.54.125:27017/test';
+var dbURL = 'mongodb://localhost:27017/test';
+
 
     var args = process.argv.slice(2);
     if (args[0] == "dev") {
-        dbURL = 'mongodb://localhost:27017/test';
+        dbURL = 'mongodb://3.101.54.125:27017/test';
     }     
 
-    
 var path = require('path'),
   express = require('express'),
   db = require('mongoskin').db(dbURL);
