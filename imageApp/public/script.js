@@ -1,3 +1,8 @@
+function start()
+{
+    document.getElementById("accountInfo").innerHTML = "Welcome, " + userObj.local.email;
+}
+
 function menuBtnClicked(index){
     $("body").removeClass().addClass("col1");
     $("#column0 .menuBtn").removeClass("selected");

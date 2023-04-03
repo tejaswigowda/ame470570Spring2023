@@ -11,10 +11,34 @@
     <script src="asyncReq.js"></script>
     <script src="script.js"></script>
 
+    <script>
+      var userObj = null;
+      var main = function(){
+        // check whether user is logged in
+        loadURL("/loginStatus", function(data){
+          if(data === "0"){
+            window.location.href='./login.html'
+            return;
+          }
+          else{
+           userObj = JSON.parse(data);
+           start();
+          }
+        });               
+      }
+      
+      var doLogout = function()
+      {
+        var x = confirm("Logout now?")
+        if(x){
+          loadURL("./logout", function(d){window.location.reload()})
+        }
+      }
+      </script>
 </head>
 
 
-<body>
+<body onload="main()">
   <div id="column0">  
     <button id="profilePic" class='menuBtn' onclick="menuBtnClicked(0)">
     </button>  
@@ -50,6 +74,9 @@
       </div>
       <div class="canvas">
         <h1> Settings</h1>
+        <div id="accountInfo">
+        </div>        
+        <a href="javascript:doLogout()" class="waves-effect waves-light btn red"><i class="material-icons left">power_settings_new</i>Logout</a>
         </div>
     </div>
   
