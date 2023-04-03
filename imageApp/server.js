@@ -7,7 +7,7 @@ var dbURL = 'mongodb://localhost:27017/test';
 
     var args = process.argv.slice(2);
     if (args[0].length > 0) {
-        dbURL = 'mongodb://' + arg[0] + ':27017/test';
+        dbURL = 'mongodb://' + args[0] + ':27017/test';
     }     
 
 var path = require('path'),
