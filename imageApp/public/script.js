@@ -39,5 +39,16 @@ function uploadFile()
         document.getElementById("image").src = reader.result;
         editModal[0].open()
         $("#image").cropper({aspectRatio: 1/1})
+        document.getElementById("file").value = "";
+
+
     }
+}
+
+function saveImage()
+{
+    var base64Image = $("#image").cropper("getCroppedCanvas").toDataURL();
+    //send base64Image to server
+    editModal[0].close();
+    $("#image").cropper('destroy');
 }
