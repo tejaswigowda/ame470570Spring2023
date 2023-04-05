@@ -42,6 +42,10 @@ function uploadFile()
         document.getElementById("file").value = "";
 
 
+
+        
+
+
     }
 }
 
@@ -51,4 +55,23 @@ function saveImage()
     //send base64Image to server
     editModal[0].close();
     $("#image").cropper('destroy');
+
+
+
+
+   var fd = new FormData();
+   var fileInput = userObj.local.email + "-s3Upload_" + new Date().getTime().toString() + "." + ext;
+   fd.append('data', base64Image);
+   fd.append('intname', fileInput);
+   fd.append('date', (new Date()).toString());
+
+    //fd.append('data', data);
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(e) {  
+      if (xhr.readyState != 4) { return; }
+        // callback logic
+      // document.getElementById("preview").src = "https://bucket470570.s3-us-west-2.amazonaws.com/" + fileInput;
+    };
+    xhr.open("POST", "/uploadBase64", true);
+    xhr.send(fd);
 }
