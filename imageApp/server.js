@@ -1,3 +1,9 @@
+var fs = require('fs');
+var AWS = require('aws-sdk');
+AWS.config.loadFromPath('./credentials.json');
+var s3 = new AWS.S3();
+
+
 var url = require("url"),
 	querystring = require("querystring");
 var passport = require('passport');
@@ -39,7 +45,7 @@ var methodOverride = require("method-override");
 app.use(methodOverride());
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended:false
+  extended:true
 }));
 require('./passport/config/passport')(passport); // pass passport for configuration
 require('./passport/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
@@ -55,7 +61,9 @@ app.get("/getImages", function(req,res){
 
 
 app.post('/uploadBase64', function(req, res) {
-  var intname = req.body.fileInput;
+  console.log(Object.keys(req.body));
+  var intname = req.body.intname;
+  console.log(intname);
   var s3Path = '/' + intname;
   var buf = new Buffer(req.body.data.replace(/^data:image\/\w+;base64,/, ""), 'base64');
   var params = {
@@ -66,10 +74,10 @@ app.post('/uploadBase64', function(req, res) {
       ServerSideEncryption: 'AES256'
   };
   s3.putObject(params, function(err, data) {
-      db.collection("images").insert({name: "Untitled", url: intname, userID:req.user.local.email}, function(err, result) {
+      db.collection("images").insert({name: "Untitled", url: intname, userID:req.user.local.email, filter:none, date: new Date().getTime()}, function(err, result) {
           res.end("success");
           console.log(err);
-      }
+    });
   });
 });
 

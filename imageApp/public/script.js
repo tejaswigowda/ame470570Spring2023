@@ -39,7 +39,6 @@ function uploadFile()
         document.getElementById("image").src = reader.result;
         editModal[0].open()
         $("#image").cropper({aspectRatio: 1/1})
-        document.getElementById("file").value = "";
 
 
 
@@ -51,21 +50,24 @@ function uploadFile()
 
 function saveImage()
 {
-    var base64Image = $("#image").cropper("getCroppedCanvas").toDataURL();
+    var base64Image = $("#image").cropper("getCroppedCanvas").toDataURL("image/png");
+    
     //send base64Image to server
     editModal[0].close();
+    document.getElementById("file").value = "";
+
     $("#image").cropper('destroy');
 
 
+    var fileInput = userObj.local.email + "-s3Upload_" + new Date().getTime().toString() + ".png";
 
 
+    /*
    var fd = new FormData();
-   var fileInput = userObj.local.email + "-s3Upload_" + new Date().getTime().toString() + "." + ext;
    fd.append('data', base64Image);
    fd.append('intname', fileInput);
    fd.append('date', (new Date()).toString());
 
-    //fd.append('data', data);
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function(e) {  
       if (xhr.readyState != 4) { return; }
@@ -74,4 +76,10 @@ function saveImage()
     };
     xhr.open("POST", "/uploadBase64", true);
     xhr.send(fd);
+    */
+
+
+    $.post("/uploadBase64", {data: base64Image, intname: fileInput, date: (new Date()).toString()}, function(data){
+        console.log("https://bucket470570.s3-us-west-2.amazonaws.com/" + fileInput);
+    });
 }
