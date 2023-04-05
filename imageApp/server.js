@@ -51,7 +51,10 @@ require('./passport/config/passport')(passport); // pass passport for configurat
 require('./passport/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
 
-app.get("/addImage", isLoggedIn, function(req,res){
+app.get("/getUserImages", isLoggedIn, function(req,res){
+    db.collection("images").find({userID:req.user.local.email}).sort({date:-1}).toArray(function(err, result) {
+        res.send(result);
+    });
 
 })
 
@@ -74,7 +77,7 @@ app.post('/uploadBase64', function(req, res) {
       ServerSideEncryption: 'AES256'
   };
   s3.putObject(params, function(err, data) {
-      db.collection("images").insert({name: "Untitled", url: intname, userID:req.user.local.email, filter:none, date: new Date().getTime()}, function(err, result) {
+      db.collection("images").insert({name: "Untitled", url: intname, userID:req.user.local.email, filter:"none", date: new Date().getTime()}, function(err, result) {
           res.end("success");
           console.log(err);
     });

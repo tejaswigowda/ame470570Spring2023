@@ -1,5 +1,7 @@
 var editModal;
 
+var bucketURL = "https://bucket470570.s3-us-west-2.amazonaws.com/";
+
 function start()
 {
     document.getElementById("accountInfo").innerHTML = "Welcome, " + userObj.local.email;
@@ -13,6 +15,10 @@ function menuBtnClicked(index){
     $("#column0 .menuBtn").eq(index).addClass("selected");
     $("#column1 .canvas").fadeOut();
     $("#column1 .canvas").eq(index).fadeIn();
+
+    if(index == 0){
+        makeUserImageList();
+    }
 }
 
 function goBack(){
@@ -61,25 +67,21 @@ function saveImage()
 
     var fileInput = userObj.local.email + "-s3Upload_" + new Date().getTime().toString() + ".png";
 
-
-    /*
-   var fd = new FormData();
-   fd.append('data', base64Image);
-   fd.append('intname', fileInput);
-   fd.append('date', (new Date()).toString());
-
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(e) {  
-      if (xhr.readyState != 4) { return; }
-        // callback logic
-      // document.getElementById("preview").src = "https://bucket470570.s3-us-west-2.amazonaws.com/" + fileInput;
-    };
-    xhr.open("POST", "/uploadBase64", true);
-    xhr.send(fd);
-    */
-
-
     $.post("/uploadBase64", {data: base64Image, intname: fileInput, date: (new Date()).toString()}, function(data){
         console.log("https://bucket470570.s3-us-west-2.amazonaws.com/" + fileInput);
+
+        makeUserImageList();
     });
+}
+
+
+function makeUserImageList(){
+  loadURL("/getUserImages", function(data){
+    var allImages = JSON.parse(data);
+    var html = "";
+    for(var i = 0; i < allImages.length; i++){
+        html += "<div class='col s4'><h1>" + allImages[i].intname + "</h1><img class='responsive-img' src='" + bucketURL + allImages[i].url + "'></div>";
+    }
+    $("#imageList").html(html);
+  });
 }
