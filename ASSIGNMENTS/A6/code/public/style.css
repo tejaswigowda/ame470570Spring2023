@@ -1,0 +1,124 @@
+.canvas{
+    overflow-y:auto;
+    overflow-x:hidden;
+    height: 100%;
+}
+#addNew{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+#backBtn{
+    display: none;
+}
+#column0{
+    width: 20vw;
+    height: 100vh;
+    background-color: aliceblue;
+}
+
+#column1{
+    width: 30vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 20vw;
+    background-color: azure;
+}
+
+#column2{
+    width: 50vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: antiquewhite;
+}
+
+#profilePic{
+    width: 100%;
+    height: 100px;
+    background-image: url(icon.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 10px 0;
+    border: none;
+    background-color: transparent;
+}
+
+.menuBtn{
+    width: 100%;
+    padding: 0  0 0 10px !important;
+    background-color: transparent !important;
+    color: black !important;
+    text-align: left !important;
+}
+
+.canvas{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    display: none;
+}
+
+.canvas h1{
+    font-size: 24px;
+    text-align: center;
+    margin:10px 0;
+    padding: 0;
+}
+
+.menuBtn.selected{
+    background-color: gold !important;
+}
+
+@media screen and (max-width: 600px){
+    body.col1 #backBtn,
+    body.col2 #backBtn{
+        display: block;
+        position: fixed;
+        bottom: 5px;
+        left: 5px;
+    }
+
+    #column0{
+        width: 100vw;
+        height: 100vh;
+    }
+    #column1{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #column2{
+        width: 100vw;
+        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    #column1, #column2{
+        display: none;
+    }
+
+    body.col1 #column1{
+        display: block;
+    }
+    body.col1 #column2,
+    body.col1 #column0{
+        display: none;
+    }
+
+    body.col2 #column2{
+        display: block;
+    }
+    body.col2 #column1,
+    body.col2 #column0{
+        display: none;
+    }
+}

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Image App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="asyncReq.js"></script>
+    <script src="script.js"></script>
+
+    <script src=" https://cdn.jsdelivr.net/npm/cropper@4.1.0/dist/cropper.min.js "></script>
+<link href=" https://cdn.jsdelivr.net/npm/cropper@4.1.0/dist/cropper.min.css " rel="stylesheet">
+
+    <script>
+      var userObj = null;
+      var main = function(){
+        // check whether user is logged in
+        loadURL("/loginStatus", function(data){
+          if(data === "0"){
+            window.location.href='./login.html'
+            return;
+          }
+          else{
+           userObj = JSON.parse(data);
+           start();
+          }
+        });               
+      }
+      
+      var doLogout = function()
+      {
+        var x = confirm("Logout now?")
+        if(x){
+          loadURL("./logout", function(d){window.location.reload()})
+        }
+      }
+      </script>
+</head>
+
+
+<body onload="main()">
+  <div id="column0">  
+    <button id="profilePic" class='menuBtn' onclick="menuBtnClicked(0)">
+    </button>  
+      <a href="javascript:menuBtnClicked(1)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">apps</i>Dashboard</a>
+      <a href="javascript:menuBtnClicked(2)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">group</i>Friends</a>
+      <a href="javascript:menuBtnClicked(3)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">inbox</i>Messages</a>
+      <a href="javascript:menuBtnClicked(4)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">settings</i>Account</a>
+
+    </div>
+
+
+  </div>
+
+  <div id="column1">
+      <div class="canvas">
+        <h1> My Images</h1>
+        <div id="imageList">
+        </div>
+        <a id='addNew' href='javascript:addNew()' class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i>
+          <input type="file" id="file" name="file" style="opacity:0;    width: 60px;
+          height: 60px;
+          left: 0;
+          position: absolute;
+          bottom: 0;" onchange="uploadFile()">
+        </a>
+      </div>
+      <div class="canvas">
+        <h1> Dashboard</h1>
+      </div>
+      <div class="canvas">
+        <h1> My Friends</h1>
+      </div>
+      <div class="canvas">
+        <h1> Messages</h1>
+      </div>
+      <div class="canvas">
+        <h1> Settings</h1>
+        <div id="accountInfo">
+        </div>        
+        <a href="javascript:doLogout()" class="waves-effect waves-light btn red"><i class="material-icons left">power_settings_new</i>Logout</a>
+        </div>
+    </div>
+  
+  <div id="column2">
+
+  </div>
+  <a id='backBtn' href='javascript:goBack()' class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">arrow_back</i></a>
+
+
+  <-- cropper.js modal -->
+  <div id="cropModal" class="modal">
+    <div class="modal-content">
+      <h4>Crop Image</h4>
+      <div class="img-container">
+        <img id="image" src="" alt="Picture">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="javascript:saveImage()" style='position:absolute;top:10px;right:10px' class="modal-close waves-effect waves-green btn-flat blue">Continue</a>
+    </div>
+  </div>
+          
+
+
+</body>
+</html>
