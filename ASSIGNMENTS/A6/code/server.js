@@ -40,13 +40,11 @@ var flash = require('express-flash');
 app.use( flash() );
 
 var bodyParser = require("body-parser");
-var methodOverride = require("method-override");
+//var methodOverride = require("method-override");
 
-app.use(methodOverride());
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
-app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended:true
-}));
+//app.use(methodOverride());
+app.use(bodyParser.json({limit: '50mb'}) );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true})); // to support URL-encoded bodies
 require('./passport/config/passport')(passport); // pass passport for configuration
 require('./passport/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
