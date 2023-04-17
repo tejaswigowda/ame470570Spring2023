@@ -43,9 +43,9 @@ var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 
 app.use(methodOverride());
-app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use( bodyParser.json({limit: '50mb'}) );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended:true
+  extended:true, limit: '50mb'
 }));
 require('./passport/config/passport')(passport); // pass passport for configuration
 require('./passport/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
@@ -84,6 +84,46 @@ app.post('/uploadBase64', function(req, res) {
   });
 });
 
+app.post('/uploadProfilePic', function(req, res) {
+    console.log(Object.keys(req.body));
+    var intname = req.body.intname;
+    console.log(intname);
+    var s3Path = '/' + intname;
+    var buf = new Buffer.from(req.body.data.replace(/^data:image\/\w+;base64,/, ""), 'base64');
+    var params = {
+        Bucket: 'bucket470570',
+        ACL: 'public-read',
+        Key: intname,
+        Body: buf,
+        ServerSideEncryption: 'AES256'
+    };
+    s3.putObject(params, function(err, data) {
+        db.collection("userdata").findOne({userID:req.user.local.email}, function(err, result) {
+            if(result){
+                db.collection("userdata").update({userID:req.user.local.email}, {$set:{profilePic: intname}}, function(err, result) {
+                    res.end("success");
+                    console.log(err);
+                });
+            }
+            else{
+                db.collection("userdata").insert({userID:req.user.local.email, profilePic: intname}, function(err, result) {
+                    res.end("success");
+                    console.log(err);
+                });
+            }
+        });
+
+
+
+    });
+});
+
+app.get("/getProfilePic", isLoggedIn, function(req,res){
+    db.collection("userdata").findOne({userID:req.user.local.email}, function(err, result) {
+        res.send(result);
+    });
+});
+
 
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -98,4 +138,3 @@ function isLoggedIn(req, res, next) {
 
     res.send('noauth');
 }
-

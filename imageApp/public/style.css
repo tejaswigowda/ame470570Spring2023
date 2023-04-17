@@ -9,6 +9,13 @@
     right: 5px;
 }
 
+#imagePreviewContainer
+{
+    height: 50vw;
+    width: 400px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 #backBtn{
     display: none;
 }
@@ -122,3 +129,5 @@
         display: none;
     }
 }
+
+
