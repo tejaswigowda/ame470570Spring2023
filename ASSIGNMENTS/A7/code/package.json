@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "aws-sdk": "^2.1350.0",
+    "cookie-parser": "^1.4.6",
+    "express-session": "^1.17.3",
+    "mongoose": "^7.0.3",
+    "mongoskin": "^2.1.0",
+    "passport": "^0.6.0",
+    "pause": "^0.1.0"
+  }
+}
