@@ -25,7 +25,7 @@ function start()
 function updateImageFilter()
 {
     var filter = document.getElementById("filterSelect").value;
-    var img = allImages[0];
+    var img = allImages[currMenuIndex];
     document.getElementById("imagePreviewContainer").className = filter;
     $.get("/updateImageFilter", {id: img._id, filter: filter}, function(data){
         console.log(data);
