@@ -64,7 +64,7 @@
         <h1> My Images</h1>
         <div id="imageList">
         </div>
-        <a id='addNew' href='javascript:addNew()' class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i>
+        <a id='addNew' class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i>
           <input type="file" id="file" name="file" style="opacity:0;    width: 60px;
           height: 60px;
           left: 0;
@@ -99,11 +99,11 @@
   <div id="column2">
     <div class="canvas" id="imageEdit">
       <h1> Editing Image</h1>
-      <input type="text" id="imageTitle" placeholder="Enter Title" onchange="updateImage()">
+      <input type="text" id="imageTitle" placeholder="Enter Title" onchange="updateImageTitle()">
       <div id="imagePreviewContainer">
       </div>
   
-      <select id="filterSelect" onchange="updateImage()">
+      <select id="filterSelect" onchange="updateImageFilter()">
         <option value="none">None</option>
         <option value="aden">Aden</option>
         <option value="brannan">Brannan</option>

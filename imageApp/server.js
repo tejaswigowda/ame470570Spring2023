@@ -16,9 +16,10 @@ var dbURL = 'mongodb://localhost:27017/test';
         dbURL = 'mongodb://' + args[0] + ':27017/test';
     }     
 
+    var MS = require('mongoskin');
 var path = require('path'),
   express = require('express'),
-  db = require('mongoskin').db(dbURL);
+  db = MS.db(dbURL);
 
 
 var mongoose = require('mongoose');
@@ -82,6 +83,20 @@ app.post('/uploadBase64', function(req, res) {
           console.log(err);
     });
   });
+});
+
+app.get("/updateImageFilter", function(req, res){
+    var filter = req.query.filter;
+    var id = req.query.id;
+    db.collection('images').update({ _id: MS.helper.toObjectID(id) }, { $set: { filter: filter} }, function (err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('updated:', result.length, result);
+            res.send(result);
+        }
+    });
+
 });
 
 app.post('/uploadProfilePic', function(req, res) {
