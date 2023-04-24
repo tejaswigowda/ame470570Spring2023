@@ -99,6 +99,27 @@ app.get("/updateImageFilter", function(req, res){
 
 });
 
+
+app.get("/addPeer", isLoggedIn, function(req, res){
+    var peer = req.query.peer;
+
+    db.collection('peers').insert({peer: peer, userID:req.user.local.email}, function (err, result) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('updated:', result.length, result);
+            res.send(result);
+        }
+    });
+});
+
+
+app.get("/getPeers", isLoggedIn, function(req, res){
+    db.collection("peers").find({userID:req.user.local.email}).toArray(function(err, result) {
+        res.send(result);
+    });
+});
+
 app.post('/uploadProfilePic', function(req, res) {
     console.log(Object.keys(req.body));
     var intname = req.body.intname;

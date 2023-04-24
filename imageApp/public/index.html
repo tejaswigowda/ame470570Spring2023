@@ -50,7 +50,7 @@
     <button id="profilePic" class='menuBtn' onclick="menuBtnClicked(0)">
     </button>  
       <a href="javascript:menuBtnClicked(1)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">apps</i>Dashboard</a>
-      <a href="javascript:menuBtnClicked(2)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">group</i>Friends</a>
+      <a href="javascript:menuBtnClicked(2)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">group</i>Peers</a>
       <a href="javascript:menuBtnClicked(3)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">inbox</i>Messages</a>
       <a href="javascript:menuBtnClicked(4)" class="waves-effect waves-light btn menuBtn"><i class="material-icons left">settings</i>Account</a>
 
@@ -76,7 +76,14 @@
         <h1> Dashboard</h1>
       </div>
       <div class="canvas">
-        <h1> My Friends</h1>
+        <h1> My Peers</h1>
+        <div id="peerList">
+
+        </div>
+
+        <a href="javascript:addPeer()" class="waves-effect waves-light btn btn-floating btn-large waves-effect waves-light blue"
+          style="position: absolute;bottom:5px;right:5px;"
+        ><i class="material-icons">add</i></a>
       </div>
       <div class="canvas">
         <h1> Messages</h1>
