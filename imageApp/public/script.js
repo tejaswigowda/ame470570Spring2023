@@ -28,8 +28,36 @@ function addPeer()
     if(peer){
         $.get("/addPeer", {peer: peer}, function(data){
             console.log(data);
+            makePeerList()
         });
     }
+}
+
+var allPeers = []
+
+function makePeerList()
+{
+    $.get("/getPeers", function(data){
+        console.log(data);
+        allPeers = data;
+        var html = "";
+        for(var i = 0; i < data.length; i++){
+            html += "<button class='peer' onclick='peerSelected("+ i + ")'>" + data[i].peer + "</button>";
+        }
+        document.getElementById("peerList").innerHTML = html;
+    });
+}
+
+var currPeer;
+function peerSelected(index)
+{
+    currPeer = index;
+    var peer = allPeers[index];
+    $("#column2 .canvas").fadeOut();
+    $("#column2 .canvas#peerEdit").fadeIn();
+    document.getElementById("peerName").innerHTML = peer.peer;
+
+
 }
 
 function updateImageFilter()
@@ -54,6 +82,9 @@ function menuBtnClicked(index){
 
     if(index == 0){
         makeUserImageList();
+    }
+    else if(index == 2){
+        makePeerList();
     }
 }
 
